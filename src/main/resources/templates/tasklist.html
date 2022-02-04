@@ -1,0 +1,416 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>Task list</title>
+
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/tasklist.css" th:href="@{/tasklist.css}">
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <div th:replace="~{fragment/header.html :: links}"></div>
+</head>
+<body>
+<div th:replace="~{fragment/header.html :: header}"></div>
+<div class="container-fluid">
+    <div class="row">
+        <ul>
+            <li><a href="/admin/">На Главную</a></li>
+
+        </ul>
+
+
+
+        <div class="col-sm-10 bg-light px-5" style="height: 100vh">
+            <br>
+            <h1>Task List</h1>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#usersTable" class="nav-link active" data-toggle="tab" id="id">Таблица шаблонных заданий</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#newTask1" class="nav-link" data-toggle="tab" id="button-new-task1">Загрузить вопрос</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#newTask2" class="nav-link" data-toggle="tab" id="button-new-task2">Загрузить задачу</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#newTask3" class="nav-link" data-toggle="tab" id="button-new-task3">Отфильтровать таблицу</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="usersTable">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>All tasks</b>
+                        </div>
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped" style='font-family:"Courier New", Courier, monospace; font-size:70%'>
+                                <thead>
+                                <tr>
+                                    <th scope="col">id</th>
+                                    <th scope="col">тема</th>
+                                    <th scope="col">вопрос/задача</th>
+                                    <th scope="col">что за вопрос</th>
+                                    <th scope="col">имя класса</th>
+                                    <th scope="col">Все Ответы</th>
+                                    <th scope="col">это вопрос</th>
+                                    <th scope="col">Корректные ответы</th>
+                                    <th scope="col">Path</th>
+                                    <th scope="col">Изменить/Удалить</th>
+                                </tr>
+                                </thead>
+                                <tbody id="task-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="newTask1">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Загрузить вопрос</b>
+                        </div>
+                        <div class="card-body text-center border">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <form action="#"  id="new-form-task1" autocomplete="off" name="taskTemplate">
+
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="option">
+                                                    Тема
+                                                </label>
+                                                <select id="option"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required placeholder="Выберите тип вопроса" name="lessonTopic">
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="name-task1">
+                                                    Вопрос про что...
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="nameTask"
+                                                       id="name-task1"
+                                                       placeholder="Enter вопрос или задача"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="description1">
+                                                    Опишите задание
+                                                </label>
+                                                <textarea class="form-control" id="description1"  rows="4" cols="50" name="description" placeholder="Enter Суть задания"></textarea>
+                                            </div>
+
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold" for="bytes1">
+                                                        Введите все  варианты ответов правильные и неправильные (между вариантами поставьте знак #):
+                                                    </label>
+                                                    <textarea class="form-control" id="bytes1"  rows="4" cols="50" name="res"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold" for="correctAnswers1">
+                                                        Введите только правильные ответов (между вариантами поставьте знак #, после ответа поставьте точку):
+                                                    </label>
+                                                    <textarea class="form-control" id="correctAnswers1"  rows="4" cols="50" name="correctAnswers" required></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold" for="path-id">
+                                                        Введите только path
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           name="path"
+                                                           id="path-id">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-success" value="new-task" id="Add-new-task-input1">
+                                            </div>
+                                            <button  type="reset" id="newCloseButton1" hidden="hidden">Close</button>
+                                            <input type="reset" id="newUserFormResetButton1" hidden="hidden">
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="newTask2">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Загрузите задачу</b>
+                        </div>
+                        <div class="card-body text-center border">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-8">
+                                        <form action="#" id="new-form-task2"  autocomplete="off" enctype="multipart/form-data">
+
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="option1">
+                                                    Тема
+                                                </label>
+                                                <select id="option1"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required placeholder="Выберите тип вопроса" name="lessonTopic">
+
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="name-task">
+                                                    Задача про что...
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="nameTask"
+                                                       id="name-task"
+                                                       placeholder="Enter вопрос или задача"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="description">
+                                                    Опишите задание
+                                                </label>
+                                                <textarea class="form-control" id="description"  rows="4" cols="50" name="description" placeholder="Enter Суть задания" required></textarea>
+                                            </div><br><br>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-name">
+                                                    name-class
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="nameClass"
+                                                       id="edit-name"
+                                                       placeholder="Если вопрос то имя класса не устанавливать">
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold" for="bytes2">
+                                                        Введите код который будет отображаться:
+                                                    </label>
+                                                    <textarea class="form-control" id="bytes2"  rows="4" cols="50" name="res"></textarea>
+                                                </div>
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold" for="correctAnswers2">
+                                                            Введите что возвращает метод main
+                                                        </label>
+                                                        <textarea class="form-control" id="correctAnswers2"  rows="4" cols="50" name="listCorrectAnswers"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold" for="path">
+                                                        Укажите патч нахождения файла задачи
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           name="path"
+                                                           id="path"
+                                                           placeholder="Enter path">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-success" value="new-task" id="Add-new-task-input2">
+                                            </div>
+                                            <button  type="reset" id="newCloseButton" hidden="hidden">Close</button>
+                                            <input type="reset" id="newUserFormResetButton2" hidden="hidden">
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="editTask">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <b id="modal-header-Username"></b>
+                                <button class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <div class="row">
+
+                                    <div class="col-sm-12">
+                                        <form action="#" id="task-edit-form" name="taskTemplate" autocomplete="off">
+                                            <input type="hidden" name="id" id="edit-id">
+
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-topic">
+                                                    topic
+                                                </label>
+                                                <input type="text"
+                                                       name="lessonTopic"
+                                                       id="edit-topic"
+                                                       class="form-control"
+                                                       placeholder="Enter topic"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-name-task">
+                                                    name-task
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="nameTask"
+                                                       id="edit-name-task"
+                                                       placeholder="Enter name-task"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-description">
+                                                    description
+                                                </label>
+                                                <textarea class="form-control"
+                                                       name="description"
+                                                       id="edit-description"
+                                                       placeholder="Enter description"
+                                                       required>
+                                                </textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-name-class">
+                                                    name-class
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="nameClass"
+                                                       id="edit-name-class"
+                                                       placeholder="Если вопрос то имя класса не устанавливать">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-bytes">
+                                                    bytes
+                                                </label>
+                                                <textarea class="form-control"
+                                                       name="res"
+                                                       id="edit-bytes"
+                                                       placeholder="Enter bytes">
+                                                </textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-is-question">
+                                                    is-question
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="isQuestion"
+                                                       id="edit-is-question"
+                                                       placeholder="Enter is-question">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-list-correct-answers">
+                                                    list-correct-answers
+                                                </label>
+                                                <textarea class="form-control"
+                                                       name="correctAnswers"
+                                                       id="edit-list-correct-answers"
+                                                       placeholder="Enter list-correct-answers">
+                                                </textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="path-id-path">
+                                                     path
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="path"
+                                                       id="path-id-path">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" id="editCloseButton">Close</button>
+                                <button type="submit" form="task-edit-form" class="btn btn-primary" id="editButton">Edit task</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="newTask3">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Определите какой фильтр применить</b>
+                        </div>
+                        <div class="card-body text-center border">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <form action="#"  id="filter-form" name="filter" autocomplete="off">
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="option">
+                                                    Тема
+                                                </label>
+                                                <select id="option-filter"  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required placeholder="Выберите тип вопроса" name="lessonTopic">
+
+                                                </select>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-success" value="Применить фильтр" id="submit-filter"><br><br>
+                                                <input type="submit" class="btn btn-success" value="Отменить фильтр" id="submit-not-filter">
+                                            </div>
+                                            <button  type="reset" id="submit-close" hidden="hidden">Close</button>
+                                            <input type="reset" id="submit-reset" hidden="hidden">
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-9"></div>
+
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="card-body">
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>тема</th>
+                                                    <th>вопрос/задача</th>
+                                                    <th>что за вопрос</th>
+                                                    <th>имя класса</th>
+                                                    <th>Все Ответы</th>
+                                                    <th>это вопрос</th>
+                                                    <th>Корректные ответы</th>
+                                                    <th>Path</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="tasksFilter"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/assets/dist/js/bootstrap.bundle.min.js" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script src="/static/tasklist.js" th:src="@{/tasklist.js}"></script>
+</body>
+</html>

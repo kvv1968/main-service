@@ -1,0 +1,248 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+lang="en">
+
+<head>
+    <div th:fragment="links">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+              crossorigin="anonymous">
+        <link href="/static/assets/dist/css/bootstrap.min.css" th:href="@{/assets/dist/css/bootstrap.min.css}"
+              rel="stylesheet">
+        <link href="/static/css/header.css" rel="stylesheet" th:href="@{/css/header.css}" type="text/css"/>
+        <link rel="shortcut icon" href="/static/images/java_original_wordmark_logo_icon_146459.png" type="image/x-icon">
+        <script
+                src="https://code.jquery.com/jquery-3.4.1.js"
+                integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+                crossorigin="anonymous"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <style>
+            /* unvisited link */
+            a:link {
+                color: #8f7854;
+            }
+
+            /* visited link */
+            a:visited {
+                color: #7e5659;
+            }
+
+            /* mouse over link */
+            a:hover {
+                color: rgba(157, 85, 121, 0.99);
+            }
+
+            /* selected link */
+            a:active {
+                color: #47476e;
+            }
+        </style>
+    </div>
+</head>
+<body>
+
+<header th:fragment="header" class="p-3 mb-3 border-bottom">
+
+    <div class="container">
+        <!--        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">-->
+        <nav class="navbar navbar-light bg-light">
+
+            <a href="/user/nav" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                <svg width="100" height="100" viewBox="-118.513 4.399 540.906 540.906"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <path d="M285.104 430.945h-2.037v-1.14h5.486v1.14h-2.025v5.688h-1.424v-5.688zm10.942.297h-.032l-2.02 5.393h-.924l-2.006-5.393h-.024v5.393h-1.343v-6.828h1.976l1.86 4.835 1.854-4.835h1.969v6.828h-1.311l.001-5.393z"
+                          fill="#e76f00"/>
+                    <path d="M102.681 291.324s-14.178 8.245 10.09 11.035c29.4 3.354 44.426 2.873 76.825-3.259 0 0 8.518 5.341 20.414 9.967-72.63 31.128-164.376-1.803-107.329-17.743M93.806 250.704s-15.902 11.771 8.384 14.283c31.406 3.24 56.208 3.505 99.125-4.759 0 0 5.937 6.018 15.271 9.309-87.815 25.678-185.624 2.025-122.78-18.833"
+                          fill="#5382a1"/>
+                    <path d="M168.625 181.799c17.896 20.604-4.701 39.146-4.701 39.146s45.439-23.458 24.571-52.833c-19.491-27.395-34.438-41.005 46.479-87.934.001-.001-127.013 31.721-66.349 101.621"
+                          fill="#e76f00"/>
+                    <path d="M264.684 321.369s10.492 8.646-11.555 15.333c-41.923 12.7-174.488 16.535-211.314.507-13.238-5.76 11.587-13.752 19.396-15.429 8.144-1.766 12.798-1.437 12.798-1.437-14.722-10.371-95.157 20.363-40.857 29.166 148.084 24.015 269.944-10.814 231.532-28.14M109.499 208.617s-67.431 16.016-23.879 21.832c18.389 2.462 55.047 1.905 89.192-.956 27.906-2.354 55.928-7.358 55.928-7.358s-9.84 4.214-16.959 9.074c-68.475 18.01-200.756 9.631-162.674-8.79 32.206-15.568 58.392-13.802 58.392-13.802M230.462 276.231c69.608-36.171 37.425-70.932 14.96-66.248-5.506 1.146-7.961 2.139-7.961 2.139s2.045-3.202 5.947-4.588c44.441-15.624 78.619 46.081-14.346 70.521 0 0 1.079-.962 1.4-1.824"
+                          fill="#5382a1"/>
+                    <path d="M188.495 4.399s38.55 38.562-36.563 97.862c-60.233 47.567-13.735 74.689-.025 105.678-35.158-31.723-60.96-59.647-43.65-85.637 25.406-38.151 95.792-56.648 80.238-117.903"
+                          fill="#e76f00"/>
+                    <path d="M116.339 374.246c66.815 4.277 169.417-2.373 171.846-33.987 0 0-4.67 11.984-55.219 21.503-57.027 10.731-127.364 9.479-169.081 2.601.002-.002 8.541 7.067 52.454 9.883"
+                          fill="#5382a1"/>
+                    <path d="M105.389 495.049c-6.303 5.467-12.96 8.536-18.934 8.536-8.527 0-13.134-5.113-13.134-13.314 0-8.871 4.937-15.357 24.739-15.357h7.328l.001 20.135m17.392 19.623V453.93c0-15.518-8.85-25.756-30.188-25.756-12.457 0-23.369 3.076-32.238 6.999l2.56 10.752c6.983-2.563 16.022-4.949 24.894-4.949 12.292 0 17.58 4.949 17.58 15.181v7.678h-6.135c-29.865 0-43.337 11.593-43.337 28.993 0 15.018 8.878 23.554 25.594 23.554 10.745 0 18.766-4.437 26.264-10.929l1.361 9.221 13.645-.002zM180.824 514.672h-21.691l-26.106-84.96h18.944l16.198 52.199 3.601 15.699c8.195-22.698 13.992-45.726 16.891-67.898h18.427c-4.938 27.976-13.822 58.684-26.264 84.96M264.038 495.049c-6.315 5.467-12.983 8.536-18.958 8.536-8.512 0-13.131-5.113-13.131-13.314 0-8.871 4.947-15.357 24.748-15.357h7.341v20.135m17.39 19.623V453.93c0-15.518-8.871-25.756-30.186-25.756-12.465 0-23.381 3.076-32.246 6.999l2.557 10.752c6.985-2.563 16.041-4.949 24.906-4.949 12.283 0 17.579 4.949 17.579 15.181v7.678h-6.146c-29.873 0-43.34 11.593-43.34 28.993 0 15.018 8.871 23.554 25.584 23.554 10.752 0 18.77-4.437 26.28-10.929l1.366 9.221 13.646-.002zM36.847 529.099c-4.958 7.239-12.966 12.966-21.733 16.206L6.527 535.2c6.673-3.424 12.396-8.954 15.055-14.104 2.3-4.581 3.252-10.485 3.252-24.604v-96.995h18.478v95.666c-.001 18.875-1.51 26.5-6.465 33.936"
+                          fill="#e76f00"/>
+                </svg>
+            </a><br>
+
+            <div>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-danger display-8" href="/user/nav"><strong>Платформа для обучения программированию на языке JAVA</strong></a></span>
+
+            </div>
+
+            <div class="form-inline" id="admin-menu">
+                <ul class="nav col-1 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-1">
+<!--                    <li><a href="/admin/ser/adminpage" class="nav-link px-2 link-secondary" sec:authorize="hasAnyAuthority('admin')">Главная сервер</a>-->
+                    </li>
+<!--                    <li><a href="http://localhost:8081/h2-console" class="nav-link px-2 link-dark"-->
+<!--                           sec:authorize="hasAnyAuthority('admin')">h2-console</a></li>-->
+                    <li><a href="/admin/ser/tasklist" class="nav-link px-2 link-dark"
+                           sec:authorize="hasAnyAuthority('admin')">Шаблоны задач</a></li>
+                    <li><a href="#" th:href="@{/user/send-email}" class="nav-link px-2 link-dark"
+                           sec:authorize="hasAnyAuthority('admin')">Написать письмо</a></li>
+                </ul>
+            </div>
+
+
+            <!--            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
+            <!--                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">-->
+            <!--            </form>-->
+
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <li><a onclick="getUser()" class="dropdown-item"  href="#" data-toggle="modal" data-target="#exampleModalCenter">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/logout">Sign out</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p><a href="/logout"><-Logout</a></p>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="my-profile">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalGet">Close</button>
+<!--                        <button type="button" class="btn btn-primary">Save changes</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="updateProfileUser">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <b id="modal-header-Username"></b>
+                        <button class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-6">
+                                <form action="#"
+                                      id="userEditProfileForm" autocomplete="off">
+                                    <input type="hidden" name="id" id="editId">
+
+                                    <div class="form-group">
+                                        <label class="font-weight-bold"
+                                               for="editUserUsername">
+                                            Username
+                                        </label>
+                                        <input type="text"
+                                               name="username"
+                                               id="editUserUsername"
+                                               class="form-control"
+                                               placeholder="Enter username"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold"
+                                               for="editUserPassword">
+                                            Password
+                                        </label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="password"
+                                               id="editUserPassword"
+                                               placeholder="Enter new password"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold"
+                                               for="editUserFirstName">
+                                            First name
+                                        </label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="firstName"
+                                               id="editUserFirstName"
+                                               placeholder="Enter firstname"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold"
+                                               for="editUserLasName">
+                                            Last name
+                                        </label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="lastName"
+                                               id="editUserLasName"
+                                               placeholder="Enter lastname"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold" for="editEmail">Email</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="email"
+                                               id="editEmail"
+                                               placeholder="Enter Email"
+                                               required>
+
+                                        <label class="font-weight-bold" for="editPhone">Phone</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="phone"
+                                               id="editPhone"
+                                               placeholder="Enter Phone"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-weight-bold" for="edit-date">Date</label>
+                                        <input type="text"
+                                               class="form-control"
+                                               name="date"
+                                               id="edit-date"><br>
+                                    </div><br>
+                                    <input type="text" name="enabled" hidden>
+                                    <input type="text" name="role" hidden>
+
+
+                                </form>
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" id="editCloseProfileButton">Close</button>
+                        <button type="submit" form="userEditProfileForm"
+                                class="btn btn-primary" id="editButton">Edit user
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<script src="/static/assets/dist/js/bootstrap.bundle.min.js" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script src="/static/js/header.js" th:src="@{/js/header.js}"></script>
+</body>
+</html>

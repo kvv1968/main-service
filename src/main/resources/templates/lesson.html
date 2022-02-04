@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <div th:replace="~{fragment/header.html :: links}"></div>
+    <title>lesson</title>
+    <link rel="stylesheet" href="../static/codemirror-5.31.0/lib/codemirror.css" th:href="@{/codemirror-5.31.0/lib/codemirror.css}"/>
+    <script src="../static/codemirror-5.31.0/lib/codemirror.js" th:src="@{/codemirror-5.31.0/lib/codemirror.js}"></script>
+    <script src="../static/codemirror-5.31.0/clike.js" th:src="@{/codemirror-5.31.0/clike.js}"></script>
+
+
+    <link rel="stylesheet" href="../static/codemirror-5.31.0/theme/dracula.css" th:href="@{/codemirror-5.31.0/theme/dracula.css}"/>
+    <link rel="stylesheet" href="../static/codemirror-5.31.0/addon/fold/foldgutter.css" th:href="@{/codemirror-5.31.0/addon/fold/foldgutter.css}"/>
+    <script src="../static/codemirror-5.31.0/addon/fold/foldcode.js" th:src="@{/codemirror-5.31.0/addon/fold/foldcode.js}"></script>
+    <script src="../static/codemirror-5.31.0/addon/fold/foldgutter.js" th:src="@{/codemirror-5.31.0/addon/fold/foldgutter.js}"></script>
+    <script src="../static/codemirror-5.31.0/addon/fold/brace-fold.js" th:src="@{/codemirror-5.31.0/addon/fold/brace-fold.js}"></script>
+    <script src="../static/codemirror-5.31.0/addon/fold/comment-fold.js" th:src="@{/codemirror-5.31.0/addon/fold/comment-fold.js}"></script>
+    <script src="../static/codemirror-5.31.0/addon/edit/matchbrackets.js" th:src="@{/codemirror-5.31.0/addon/edit/matchbrackets.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/lesson.css}">
+
+</head>
+<body>
+<div th:replace="~{fragment/header.html :: header}"></div>
+
+<p th:data-step="${step}" hidden></p>
+
+<div class="container">
+    <div class="row justify-content-lg-start">
+        <div class="col-sm-8">
+            <div class='flex-lg-wrap'>
+                <a href='#' onclick='history.back();'><-Вернуться к вопросам</a>
+                <div class='header-panel'><h5 id="h-text"></h5></div>
+                <div class='text-body'>
+                    <div><pre width="75"><strong id="strong-text"></strong></pre></div><br>
+                    <div class='form-check'>
+                        <form name='taskData' action='#' id='formTask' method="post">
+<!--                            <h6 >Напишите код p.s. не изменять то что написано уже в форме</h6>-->
+                            <input type="text" name="idTask" id="idTask" hidden>
+                            <div id="taskTemplate"></div><br>
+                            <div><p><input type='submit' id="buttonForm"></p></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="" id="answerUser">
+            </div>
+        </div>
+        <div class="col-sm-4" id="user-story">
+            <div class="tab-content">
+                <div class="tab-pane active" id="usersTable">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Ваши попытки</b>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-hover" style='font-family:"Courier New", Courier, monospace; font-size:70%'>
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Сообщение о результате</th>
+                                    <th>Результат прохождения задачи</th>
+                                </tr>
+                                </thead>
+                                <tbody id="user-task-list-result"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="../static/js/lesson.js" th:src="@{/js/lesson.js}"></script>
+    <script src="/static/assets/dist/js/bootstrap.bundle.min.js"
+            th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script src="/static/js/header.js" th:src="@{/js/header.js}"></script>
+</body>
+</html>

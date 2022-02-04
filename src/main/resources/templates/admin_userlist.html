@@ -1,0 +1,312 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <title>User list</title>
+    <div th:replace="~{fragment/header.html :: links}"></div>
+    <meta charset=utf-8>
+    <link rel="stylesheet" th:href="@{/css/userlist.css}">
+
+</head>
+<body>
+<div th:replace="~{fragment/header.html :: header}"></div>
+<a href="/admin"><- на Главную</a>
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+        <!--***************************************************-->
+        <div class="col-sm-10 bg-light px-5" style="height: 100vh">
+            <br>
+            <h1>User List</h1>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a href="#usersTable" class="nav-link active" data-toggle="tab" id="id">Users table</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#newUser" class="nav-link" data-toggle="tab">New user</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="usersTable">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>All users</b>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th>Firstname</th>
+                                    <th>Lastname</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Дата регистрации</th>
+                                    <th>включен</th>
+                                    <th>Roles</th>
+                                    <th>Options</th>
+                                </tr>
+                                </thead>
+                                <tbody id="user-list"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="newUser">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Add new user</b>
+                        </div>
+                        <div class="card-body text-center border">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-6">
+                                        <form action="#" id="new-form-user" autocomplete="off">
+
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="newUserUsername">
+                                                    Username
+                                                </label>
+                                                <input type="text"
+                                                       name="username"
+                                                       id="newUserUsername"
+                                                       class="form-control"
+                                                       placeholder="Enter username"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="newUserPassword">
+                                                    Password
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="password"
+                                                       id="newUserPassword"
+                                                       placeholder="Enter password"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="newUserFirstName">
+                                                    First name
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="firstName"
+                                                       id="newUserFirstName"
+                                                       placeholder="Enter firstname"
+                                                       value="?">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="newUserLasName">
+                                                    Last name
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="lastName"
+                                                       id="newUserLasName"
+                                                       placeholder="Enter lastname"
+                                                       value="?">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="newUserEmail">
+                                                    Email
+                                                </label>
+                                                <input type="email"
+                                                       class="form-control"
+                                                       name="email"
+                                                       id="newUserEmail"
+                                                       placeholder="Enter Email" value="r@r">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="newUserPhone">
+                                                    Phone
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="phone"
+                                                       id="newUserPhone"
+                                                       placeholder="Enter phone" value="?">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="newUserDate">
+                                                    Date
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="sdate"
+                                                       id="newUserDate"
+                                                       placeholder="">
+                                            </div>
+                                            <br><br>
+                                            <div class="form-group">Включить на платформу:
+                                                <label class="font-weight-bold" for="newUserEnabledTrue">да
+                                                    <input type="radio" name="enabled" id="newUserEnabledTrue" value="true">
+                                                </label>
+                                                <label class="font-weight-bold" for="newUserEnabledFalse">нет
+                                                    <input type="radio" name="enabled" id="newUserEnabledFalse"
+                                                           value="false" checked>
+                                                </label>
+
+                                            </div>
+                                            <br>
+                                            <div class="form-group">
+                                                <div class='custom-control-inline custom-control custom-switch'
+                                                     id="new-user-role">Укажите роль:
+                                                </div>
+                                                <br>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-success" value="Add new user"
+                                                       id="Add-new-user-input">
+                                            </div>
+                                            <button type="reset" id="newCloseButton" hidden="hidden">Close</button>
+                                            <input type="reset" id="newUserFormResetButton" hidden="hidden">
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal" id="editUser">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <b id="modal-header-Username"></b>
+                                <button class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <div class="row">
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-6">
+                                        <form action="#"
+                                              id="userEditForm" autocomplete="off">
+                                            <input type="hidden" name="id" id="editId">
+
+                                            <div class="form-group">
+                                                <label class="font-weight-bold"
+                                                       for="editUserUsername">
+                                                    Username
+                                                </label>
+                                                <input type="text"
+                                                       name="username"
+                                                       id="editUserUsername"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold"
+                                                       for="editUserPassword">
+                                                    Password
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="password"
+                                                       id="editUserPassword"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold"
+                                                       for="editUserFirstName">
+                                                    First name
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="firstName"
+                                                       id="editUserFirstName"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold"
+                                                       for="editUserLasName">
+                                                    Last name
+                                                </label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="lastName"
+                                                       id="editUserLasName"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="editEmail">Email</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="email"
+                                                       id="editEmail"
+                                                       required>
+
+                                                <label class="font-weight-bold" for="editPhone">Phone</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="phone"
+                                                       id="editPhone"
+                                                       required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="font-weight-bold" for="edit-date">Date</label>
+                                                <input type="text"
+                                                       class="form-control"
+                                                       name="date"
+                                                       id="edit-date"
+                                                       value=""><br>
+
+                                                <div id="div-enable">Включен на платформе
+                                                    <!--                          <label class="font-weight-bold" for="edit-enable"></label>-->
+                                                    <!--                          <input type="text"-->
+                                                    <!--                                 class="form-control"-->
+                                                    <!--                                 name="enabled"-->
+                                                    <!--                                 id="edit-enable"-->
+                                                    <!--                                 placeholder="Включен на платформе">-->
+                                                </div>
+
+
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group">
+                                                <div class="form-check-inline" id="edit-roles">
+                                                    <!--                            <label class="font-weight-bold form-check-label" >-->
+                                                    <!--                                <input type="checkbox"-->
+                                                    <!--                                       class="form-check-input"-->
+                                                    <!--                                       name="role" id="editInputRole"-->
+                                                    <!--                                value="admin">-->
+
+
+                                                    <!--                                <span class="text-uppercase"-->
+                                                    <!--                                      id="editRoleView"></span>-->
+                                                    <!--                            </label>-->
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" id="editCloseButton">Close</button>
+                                <button type="submit" form="userEditForm"
+                                        class="btn btn-primary" id="editButton" onclick="editCloseButton">Edit user
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="/static/js/admin_userlist.js" th:src="@{/js/admin_userlist.js}"></script>
+<script src="/static/assets/dist/js/bootstrap.bundle.min.js"
+        th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script src="/static/js/header.js" th:src="@{/js/header.js}"></script>
+</body>
+</html>

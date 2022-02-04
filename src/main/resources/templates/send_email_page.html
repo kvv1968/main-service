@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <div th:replace="~{fragment/header.html :: links}"></div>
+    <title>Send Email</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+</head>
+<body>
+<div th:replace="~{fragment/header.html :: header}"></div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="well" style="margin-top: 10%;">
+                    <h3>Send me a message</h3>
+                    <form role="form" id="contactForm" data-toggle="validator" class="shake" name="mailLetter">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="subject" class="h4">Name</label>
+                                <input type="text" class="form-control" id="subject" placeholder="Enter Topic" required
+                                       data-error="NEW ERROR MESSAGE">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="email" class="h4">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="h4 ">Message</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="Enter your message"
+                                      required></textarea>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                        <button type="submit" id="form-submit" class="btn btn-success btn-lg pull-right ">Submit
+                        </button>
+                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/jquery-1.11.2.min.js" th:src="@{/js/jquery-1.11.2.min.js}"></script>
+<script type="text/javascript" src="/static/js/validator.min.js" th:src="@{/js/validator.min.js}"></script>
+<script type="text/javascript" src="/static/js/form-scripts.js" th:src="@{/js/form-scripts.js}"></script>
+<script src="/static/assets/dist/js/bootstrap.bundle.min.js" th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+<script src="/static/js/header.js" th:src="@{/js/header.js}"></script>
+</body>
+</html>
