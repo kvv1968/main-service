@@ -36,8 +36,6 @@ public class InitApp {
         }
         List<User> allUsers = userService.getAllUsers();
         log.info("Number of : " + allUsers.size());
-        userService.deleteUser(1);
-        userService.deleteUser(2);
 
         if (allUsers.isEmpty() ){
             Role role = roleService.findRoleByName("admin");
