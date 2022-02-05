@@ -38,14 +38,14 @@ public class LogFileService {
 
         } catch (Exception ex){
             log.error(ex.getMessage());
-            log.error("Stop loadDataBaseLogFile");
-        }
 
+        }
+        log.error("Stop loadDataBaseLogFile");
 
     }
 
     private List<LogFile> getLogFiles() throws IOException {
-        File dir = new File("logs/archived");
+        File dir = new File("dev/logs/archived");
         File[]files = dir.listFiles();
         if (files == null || files.length == 0){
             log.error("Error Files log is null");

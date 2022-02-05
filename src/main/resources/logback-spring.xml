@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-<!--    <property name="LOGS" value="./logs" />-->
-<!--    <property name="NAME_APP" value="main-service" />-->
+    <property name="LOGS" value="./dev/logs" />
+    <property name="NAME_APP" value="main-service" />
 
     <appender name="Console"
               class="ch.qos.logback.core.ConsoleAppender">
@@ -13,39 +13,39 @@
         </layout>
     </appender>
 
-<!--    <appender name="RollingFile"-->
-<!--              class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-<!--        <file>${LOGS}/${NAME_APP}.log</file>-->
-<!--        <encoder-->
-<!--                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-<!--            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>-->
-<!--        </encoder>-->
+    <appender name="RollingFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/${NAME_APP}.log</file>
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
+        </encoder>
 
-<!--        <rollingPolicy-->
-<!--                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
-<!--            &lt;!&ndash; rollover daily and when the file reaches 10 MegaBytes &ndash;&gt;-->
-<!--            <fileNamePattern>${LOGS}/archived/${NAME_APP}-%d{yyyy-MM-dd}.%i.log-->
-<!--            </fileNamePattern>-->
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${LOGS}/archived/${NAME_APP}-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
 
-<!--            <timeBasedFileNamingAndTriggeringPolicy-->
-<!--                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
-<!--                <maxFileSize>10MB</maxFileSize>-->
-<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
 
-<!--            <totalSizeCap>1GB</totalSizeCap>-->
-<!--            <maxHistory>10</maxHistory>-->
-<!--        </rollingPolicy>-->
-<!--    </appender>-->
+            <totalSizeCap>1GB</totalSizeCap>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+    </appender>
 
     <!-- LOG everything at INFO level -->
     <root level="info">
-<!--        <appender-ref ref="RollingFile" />-->
+        <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </root>
 
     <!-- LOG "ru.learning.platform*" at TRACE level -->
     <logger name="ru.learning.platform" level="trace" additivity="false">
-<!--        <appender-ref ref="RollingFile" />-->
+        <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
 
