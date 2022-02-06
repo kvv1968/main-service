@@ -2,9 +2,11 @@ package ru.platform.learning.mainservice.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.platform.learning.mainservice.entity.UserTask;
+import ru.platform.learning.mainservice.exception.UserTaskException;
 import ru.platform.learning.mainservice.model.LessonTopic;
 import ru.platform.learning.mainservice.repository.UserTaskRepository;
 
@@ -38,8 +40,17 @@ public class UserTaskService {
         return userTaskRepository.findUserTasksStory(id, step);
     }
 
-    @Transactional
+
     public void deleteAllUserTasks() {
         userTaskRepository.deleteAll();
+    }
+
+    public UserTask add(UserTask userTask) throws UserTaskException {
+        if(userTask == null){
+            final String msg = "Error UserTask is null";
+            log.error(msg);
+            throw new UserTaskException(msg);
+        }
+        return userTaskRepository.save(userTask);
     }
 }

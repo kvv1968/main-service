@@ -29,6 +29,7 @@ public class InitApp {
             List<Role> roles = new ArrayList<Role>(){{
                 add(new Role("admin"));
                 add(new Role("user"));
+                add(new Role("ROLE_ADMIN"));
             }};
 
             roleService.addAllRoles(roles);
@@ -37,9 +38,12 @@ public class InitApp {
         List<User> allUsers = userService.getAllUsers();
         log.info("Number of : " + allUsers.size());
 
+        for (User user:allUsers){
+            userService.deleteUser(user.getId());
+        }
+
         if (allUsers.isEmpty() ){
             Role role = roleService.findRoleByName("admin");
-
             User user = new User();
             user.setUsername("q");
             user.setPassword("q");
@@ -52,6 +56,20 @@ public class InitApp {
             user.setEnabled(true);
 
             userService.addUser(user);
+
+            Role role1 = roleService.findRoleByName("ROLE_ADMIN");
+            User user1 = new User();
+            user1.setUsername("ADMIN");
+            user1.setPassword("c33455d0-d50a-3e8f-a153-b7b05312826d");
+            user1.setRole(role1);
+            user1.setFirstName("ADMIN");
+            user1.setLastName("ADMIN");
+            user1.setPhone("ADMIN");
+            user1.setDate("ADMIN");
+            user1.setEmail("ADMIN@ADMIN");
+            user1.setEnabled(true);
+
+            userService.addUser(user1);
 
             log.info("Saving new user");
         }

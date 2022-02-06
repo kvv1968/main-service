@@ -10,8 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskData {
-
     private Long idTask;
     private String answer;
-    private Long userId;
 }

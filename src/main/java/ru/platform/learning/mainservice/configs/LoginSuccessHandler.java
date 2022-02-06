@@ -33,6 +33,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
             } else if (grantedAuthority.getAuthority().equals("admin")) {
                 isAdmin = true;
                 break;
+            } else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")){
+
             }
         }
         User user = (User) authentication.getPrincipal();

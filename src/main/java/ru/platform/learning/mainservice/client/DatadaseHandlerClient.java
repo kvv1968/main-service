@@ -7,11 +7,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.platform.learning.mainservice.model.TaskData;
+import ru.platform.learning.mainservice.dto.CompilerResult;
+import ru.platform.learning.mainservice.dto.CompilerTask;
 
 @Service
 @Slf4j
-public class UserTaskClient {
+public class DatadaseHandlerClient {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -19,16 +20,21 @@ public class UserTaskClient {
     @Autowired
     private HttpHeaders httpHeaders;
 
-    @Value("${compiler.base-url}")
+    @Value("${handler.base-url}")
     private String rootUrl;
 
 
-    public Long startCompiler(TaskData taskData) {
-        HttpEntity<?> httpEntity = new HttpEntity<>(taskData, httpHeaders);
-        return restTemplate.postForObject(
-                rootUrl + "/api/comp",
-                httpEntity,
-                Long.class
+    public byte[] getCurrentLogFile() {
+        return restTemplate.getForObject(
+                rootUrl + "/api/hand/file.zip",
+                byte[].class
+        );
+    }
+
+    public byte[] getArchivedLogFiles() {
+        return restTemplate.getForObject(
+                rootUrl + "/api/hand/files.zip",
+                byte[].class
         );
     }
 }
