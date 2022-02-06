@@ -24,7 +24,7 @@ public class RoleService {
     }
 
 
-    public List<Role> addAllRoles(List<Role> roles) {
+    public List<Role> addRoles(List<Role> roles) {
         return roleRepository.saveAll(roles);
     }
 
@@ -33,4 +33,7 @@ public class RoleService {
         return roleRepository.findRoleByRole(name);
     }
 
+    public void deleteRole(Role role){
+        roleRepository.delete(role);
+    }
 }

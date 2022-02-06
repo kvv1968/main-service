@@ -25,6 +25,11 @@ public class InitApp {
     @EventListener(ApplicationReadyEvent.class)
     public void runAfterStartup() {
         List<Role> allRoles = roleService.getAllRoles();
+
+        for (Role role:allRoles){
+            roleService.deleteRole(role);
+        }
+
         if (allRoles.isEmpty()){
             List<Role> roles = new ArrayList<Role>(){{
                 add(new Role("admin"));
@@ -32,7 +37,7 @@ public class InitApp {
                 add(new Role("ROLE_ADMIN"));
             }};
 
-            roleService.addAllRoles(roles);
+            roleService.addRoles(roles);
             log.info("Save list roles");
         }
         List<User> allUsers = userService.getAllUsers();
