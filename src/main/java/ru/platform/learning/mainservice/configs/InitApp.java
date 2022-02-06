@@ -27,12 +27,12 @@ public class InitApp {
         List<Role> allRoles = roleService.getAllRoles();
         List<User> allUsers = userService.getAllUsers();
 
-//        for (User user:allUsers){
-//            userService.deleteUser(user.getId());
-//        }
-//        for (Role role:allRoles){
-//            roleService.deleteRole(role);
-//        }
+        for (User user:allUsers){
+            userService.deleteUser(user.getId());
+        }
+        for (Role role:allRoles){
+            roleService.deleteRole(role);
+        }
 
         if (allRoles.isEmpty()){
             List<Role> roles = new ArrayList<Role>(){{
