@@ -64,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //страницы аутентификаци доступна всем
                 .antMatchers("/login").anonymous()
                 // защищенные URL
-                .antMatchers("/**").hasAnyAuthority("admin")
+                .antMatchers("/admin/**").hasAnyAuthority("admin")
                 .anyRequest()
                 .authenticated();
     }

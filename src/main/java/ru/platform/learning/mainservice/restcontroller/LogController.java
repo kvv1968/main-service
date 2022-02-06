@@ -2,14 +2,20 @@ package ru.platform.learning.mainservice.restcontroller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.platform.learning.mainservice.client.CompilerClient;
 import ru.platform.learning.mainservice.client.DatadaseHandlerClient;
 import ru.platform.learning.mainservice.service.LogService;
 
+import java.awt.*;
+
 @Slf4j
-@RestController("/admin")
+@RestController
+@RequestMapping("/admin")
 public class LogController {
 
     private final LogService logService;
@@ -23,33 +29,69 @@ public class LogController {
         this.handlerClient = handlerClient;
     }
 
-    @GetMapping("/file.zip")
-    public byte[] getCurrentLog(){
-        return logService.getCurrentLogFile();
+    @GetMapping(value = "/file.zip")
+    public ResponseEntity<?> getCurrentLog(){
+        byte[]bytes = logService.getCurrentLogFile();
+        if (bytes == null || bytes.length == 0){
+            final String msg = "Error log file is null";
+            log.error(msg);
+            return ResponseEntity.status(400).body(msg);
+        }
+        return ResponseEntity.ok(bytes);
     }
 
     @GetMapping("/files.zip")
-    public byte[] getArchivedLog(){
-        return logService.getArchivedDir();
+    public ResponseEntity<?> getArchivedLog(){
+        byte[]bytes = logService.getArchivedDir();
+        if (bytes == null || bytes.length == 0){
+            final String msg = "Error log file is null";
+            log.error(msg);
+            return ResponseEntity.status(400).body(msg);
+        }
+        return ResponseEntity.ok(bytes);
     }
 
     @GetMapping("/comp/file.zip")
-    public byte[] getCurrentLogToCompiler(){
-        return compilerClient.getCurrentLogFile();
+    public ResponseEntity<?> getCurrentLogToCompiler(){
+        byte[]bytes = logService.getCurrentLogFile();
+        if (bytes == null || bytes.length == 0){
+            final String msg = "Error log file is null";
+            log.error(msg);
+            return ResponseEntity.status(400).body(msg);
+        }
+        return ResponseEntity.ok(bytes);
     }
 
     @GetMapping("/comp/files.zip")
-    public byte[] getArchivedLogToCompiler(){
-        return compilerClient.getArchivedLogFiles();
+    public ResponseEntity<?> getArchivedLogToCompiler(){
+        byte[]bytes = compilerClient.getArchivedLogFiles();
+        if (bytes == null || bytes.length == 0){
+            final String msg = "Error log file is null";
+            log.error(msg);
+            return ResponseEntity.status(400).body(msg);
+        }
+        return ResponseEntity.ok(bytes);
     }
 
     @GetMapping("/hand/file.zip")
-    public byte[] getCurrentLogToHandler(){
-        return handlerClient.getCurrentLogFile();
+    public ResponseEntity<?> getCurrentLogToHandler(){
+        byte[]bytes = handlerClient.getCurrentLogFile();
+        if (bytes == null || bytes.length == 0){
+            final String msg = "Error log file is null";
+            log.error(msg);
+            return ResponseEntity.status(400).body(msg);
+        }
+        return ResponseEntity.ok(bytes);
     }
 
     @GetMapping("/hand/files.zip")
-    public byte[] getArchivedLogToHandler(){
-        return handlerClient.getArchivedLogFiles();
+    public ResponseEntity<?> getArchivedLogToHandler(){
+        byte[]bytes = handlerClient.getArchivedLogFiles();
+        if (bytes == null || bytes.length == 0){
+            final String msg = "Error log file is null";
+            log.error(msg);
+            return ResponseEntity.status(400).body(msg);
+        }
+        return ResponseEntity.ok(bytes);
     }
 }

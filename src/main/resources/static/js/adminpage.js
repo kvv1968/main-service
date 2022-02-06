@@ -95,31 +95,3 @@ function deleteAllUserTask(){
     });
 }
 
-// let modalLoad = document.getElementById("loadfile");
-//
-// let loadJavafile = document.getElementById("loadJavafile");
-//
-// loadJavafile.onclick = function() {
-//     modal.style.display = "block";
-// }
-// $('#load-file_1').on("submit", function (event) {
-//     event.preventDefault();
-//
-//     const $that = $(this),
-//         formFile = new FormData($that.get(0));
-//     $.ajax({
-//         url: '/api/upload/java-file',
-//         method: 'post',
-//         // processData: false,
-//         // contentType: false,
-//         data: formFile,
-//         success: function (data){
-//             alert(data);
-//             $('.close').click();
-//         },
-//         error: function (error) {
-//             alert(error);
-//             $('.close').click();
-//         }
-//     })
-// });
