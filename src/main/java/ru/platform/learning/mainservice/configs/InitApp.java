@@ -25,7 +25,11 @@ public class InitApp {
     @EventListener(ApplicationReadyEvent.class)
     public void runAfterStartup() {
         List<Role> allRoles = roleService.getAllRoles();
+        List<User> allUsers = userService.getAllUsers();
 
+        for (User user:allUsers){
+            userService.deleteUser(user.getId());
+        }
         for (Role role:allRoles){
             roleService.deleteRole(role);
         }
@@ -40,12 +44,9 @@ public class InitApp {
             roleService.addRoles(roles);
             log.info("Save list roles");
         }
-        List<User> allUsers = userService.getAllUsers();
+
         log.info("Number of : " + allUsers.size());
 
-        for (User user:allUsers){
-            userService.deleteUser(user.getId());
-        }
 
         if (allUsers.isEmpty() ){
             Role role = roleService.findRoleByName("admin");
