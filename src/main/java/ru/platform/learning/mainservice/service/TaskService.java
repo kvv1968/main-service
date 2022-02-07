@@ -12,7 +12,6 @@ import ru.platform.learning.mainservice.repository.TaskRepository;
 import java.util.List;
 
 @Service
-@Transactional
 @Slf4j
 public class TaskService {
     @Autowired
@@ -26,7 +25,7 @@ public class TaskService {
     public TaskTemplate createTaskTemplate(TaskTemplate taskTemplate) {
         return taskRepository.saveAndFlush(taskTemplate);
     }
-    @Transactional
+
     public List<TaskTemplate> createListTaskTemplates(List<TaskTemplate> taskTemplates) {
         return taskRepository.saveAll(taskTemplates);
     }

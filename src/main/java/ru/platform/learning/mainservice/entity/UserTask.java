@@ -17,9 +17,9 @@ public class UserTask implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Lob
     private String answer;
-
+    @Lob
     private String message;
 
     private Boolean isResultTask;

@@ -30,20 +30,20 @@ public class TaskTemplate implements Serializable {
     private Long id;
 
     private LessonTopic lessonTopic;
-
+    @Lob
     private String nameTask;
 
-    @Column(length = 1024)
+    @Lob
     private String description;
 
     private String nameClass;
 
-    @Column(length = 3000)
+    @Column(columnDefinition="text")
     private String res;
 
     private Boolean  isQuestion;
 
-    @Column(length = 1024)
+    @Lob
     private String correctAnswers;
 
     @Transient

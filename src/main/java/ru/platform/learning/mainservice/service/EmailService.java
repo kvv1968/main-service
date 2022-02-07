@@ -29,7 +29,7 @@ public class EmailService {
         mailMessage.setSubject(subject);
         mailMessage.setText(body);
         mailMessage.setTo(email);
-        mailMessage.setFrom(Objects.requireNonNull(env.getProperty("support.email")));
+        mailMessage.setFrom(Objects.requireNonNull(env.getProperty("spring.mail.username")));
         return mailMessage;
     }
 }

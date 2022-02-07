@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +54,7 @@ public class TaskRestController {
         if (templates.isEmpty()) {
             final String mcg = "Error templates isEmpty";
             log.error(mcg);
-            return ResponseEntity.status(400).body(mcg);
+            return ResponseEntity.status(500).body(mcg);
         }
         return ResponseEntity.ok(new HashMap<String, List<TaskTemplate>>() {{
             put(lessonTopic.getTopic(), templates);
@@ -128,16 +127,18 @@ public class TaskRestController {
             }
 
             return ResponseEntity.ok("Файл JavaFile загрузился");
+        } else if(fileName.endsWith(".json")){
+            List<TaskTemplate> templates = readFile(file);
+            try {
+                taskService.createListTaskTemplates(templates);
+                return ResponseEntity.ok("Файл загрузился");
+            } catch (Exception ex) {
+                log.error(ex.getMessage());
+                return ResponseEntity.ok(ex.getMessage());
+            }
         }
 
-        List<TaskTemplate> templates = readFile(file);
-        try {
-            taskService.createListTaskTemplates(templates);
-            return ResponseEntity.ok("Файл загрузился");
-        } catch (Exception ex) {
-            log.error(ex.getMessage());
-            return ResponseEntity.ok(ex.getMessage());
-        }
+        return ResponseEntity.ok("Такое расшрение не предусмотрено приложением");
     }
 
 
