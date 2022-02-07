@@ -30,10 +30,10 @@ public class TaskTemplate implements Serializable {
     private Long id;
 
     private LessonTopic lessonTopic;
-    @Lob
+    @Column(columnDefinition="text")
     private String nameTask;
 
-    @Lob
+    @Column(columnDefinition="text")
     private String description;
 
     private String nameClass;
@@ -43,7 +43,7 @@ public class TaskTemplate implements Serializable {
 
     private Boolean  isQuestion;
 
-    @Lob
+    @Column(columnDefinition="text")
     private String correctAnswers;
 
     @Transient
