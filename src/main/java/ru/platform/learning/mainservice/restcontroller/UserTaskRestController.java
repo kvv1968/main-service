@@ -77,7 +77,7 @@ public class UserTaskRestController {
             CompilerTask compilerTask = createCompilerTask(
                     taskTemplate.getNameClass(),
                     taskData.getAnswer(),
-                    taskTemplate.getJavaFile().getBytes(),
+                    taskTemplate.getJavaFile() != null ? taskTemplate.getJavaFile().getBytes() : null,
                     taskTemplate.getIsQuestion(),
                     taskTemplate.getCorrectAnswers());
 
