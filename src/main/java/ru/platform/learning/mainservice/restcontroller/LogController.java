@@ -53,7 +53,7 @@ public class LogController {
 
     @GetMapping("/comp/file.zip")
     public ResponseEntity<?> getCurrentLogToCompiler(){
-        byte[]bytes = logService.getCurrentLogFile();
+        byte[]bytes = compilerClient.getCurrentLogFile();
         if (bytes == null || bytes.length == 0){
             final String msg = "Error log file is null";
             log.error(msg);

@@ -3,8 +3,11 @@ package ru.platform.learning.mainservice.client;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.platform.learning.mainservice.dto.CompilerResult;
@@ -26,11 +29,18 @@ public class CompilerClient {
 
     public CompilerResult startCompiler(CompilerTask compilerTask) {
         HttpEntity<?> httpEntity = new HttpEntity<>(compilerTask, httpHeaders);
-        return restTemplate.postForObject(
+        ResponseEntity<CompilerResult> responseEntity = restTemplate.exchange(
                 rootUrl + "/api/comp",
+                HttpMethod.POST,
                 httpEntity,
-                CompilerResult.class
+                new ParameterizedTypeReference<CompilerResult>(){}
         );
+        return responseEntity.getBody();
+//        return restTemplate.postForObject(
+//                rootUrl + "/api/comp",
+//                httpEntity,
+//                createParameterizedTypeReference()
+//        );
     }
 
     public byte[] getCurrentLogFile() {
@@ -45,5 +55,9 @@ public class CompilerClient {
                 rootUrl + "/api/comp/files.zip",
                 byte[].class
         );
+    }
+
+    ParameterizedTypeReference<CompilerResult> createParameterizedTypeReference(){
+        return new ParameterizedTypeReference<CompilerResult>(){};
     }
 }
