@@ -28,19 +28,12 @@ public class CompilerClient {
 
 
     public CompilerResult startCompiler(CompilerTask compilerTask) {
-        HttpEntity<?> httpEntity = new HttpEntity<>(compilerTask, httpHeaders);
-        ResponseEntity<CompilerResult> responseEntity = restTemplate.exchange(
+        HttpEntity<CompilerTask> httpEntity = new HttpEntity<>(compilerTask, httpHeaders);
+        return restTemplate.postForObject(
                 rootUrl + "/api/comp",
-                HttpMethod.POST,
                 httpEntity,
-                new ParameterizedTypeReference<CompilerResult>(){}
+                CompilerResult.class
         );
-        return responseEntity.getBody();
-//        return restTemplate.postForObject(
-//                rootUrl + "/api/comp",
-//                httpEntity,
-//                createParameterizedTypeReference()
-//        );
     }
 
     public byte[] getCurrentLogFile() {
@@ -57,7 +50,4 @@ public class CompilerClient {
         );
     }
 
-    ParameterizedTypeReference<CompilerResult> createParameterizedTypeReference(){
-        return new ParameterizedTypeReference<CompilerResult>(){};
-    }
 }
